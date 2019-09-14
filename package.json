@@ -1,0 +1,34 @@
+{
+  "name": "skemator",
+  "version": "1.0.0",
+  "description": "To build diagrams via scripting",
+  "main": "src/skemator.js",
+  "bin": {
+    "skemator": "bin/skemator"
+  },
+  "scripts": {
+    "compile": "node_modules/.bin/pegjs --format commonjs -o src/skemator.parser.js src/skemator.parser.pegjs",
+    "compile:browser": "node_modules/.bin/pegjs --format commonjs -o src/skemator.browser.parser.js src/skemator.parser.pegjs && node dev/export.browser.js",
+    "build": "npm run compile && npm run compile:browser && npm run export:browser",
+    "export:browser": "node_modules/.bin/copyfiles src/skemator.browser.js src/skemator.browser.parser.js test/editor/src -u 1",
+    "test": "node bin/skemator test/*.skm",
+    "test:browser": "node_modules/.bin/http-server test/browser -o"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chokidar": "^3.0.2",
+    "execute-command-sync": "^1.0.2",
+    "glob": "^7.1.4",
+    "globby": "^10.0.1",
+    "mermaid": "^8.2.6",
+    "mermaid.cli": "^0.5.1",
+    "pegjs": "^0.10.0",
+    "yargs": "^14.0.0"
+  },
+  "devDependencies": {
+    "copyfiles": "^2.1.1",
+    "http-server": "^0.11.1"
+  }
+}
