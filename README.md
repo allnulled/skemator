@@ -177,7 +177,7 @@ Node: `  --some message-->[Node]=id`
   - `.->` which is a dotted arrow
   - `==>` which is a bold arrow
   - `---` which is a line
-- `[Node]` is a the of the node (`[` and `]`), and its text content (`Node`). **Required**. It can be:
+- `[Node]` is the of the node (`[`, `]`) and its text content (`Node`). **Required**. It can be:
   - `[...]` which is a square
   - `<...>` which is a diammond
   - `{...}` which is a rounded square
