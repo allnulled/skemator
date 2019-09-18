@@ -7,12 +7,12 @@
     "skemator": "bin/skemator"
   },
   "scripts": {
-    "compile": "node_modules/.bin/pegjs --format commonjs -o src/skemator.parser.js src/skemator.parser.pegjs",
-    "compile:browser": "node_modules/.bin/pegjs --format commonjs -o src/skemator.browser.parser.js src/skemator.parser.pegjs && node dev/export.browser.js",
+    "compile": "pegjs --format commonjs -o src/skemator.parser.js src/skemator.parser.pegjs",
+    "compile:browser": "pegjs --format commonjs -o src/skemator.browser.parser.js src/skemator.parser.pegjs && node dev/export.browser.js",
     "build": "npm run compile && npm run compile:browser",
-    "test": "node_modules/.bin/mocha test/**/*.test.js",
+    "test": "mocha test/**/*.test.js",
     "test:cli": "npm run test:cli:clean && node bin/skemator compile \"test/1/*.skm\" \"test/2/*.skm\" \"test/3/*.skm\" --svg --png --pdf",
-    "test:cli:clean": "./node_modules/.bin/rimraf test/*/*.mmd test/*/*.pdf test/*/*.png test/*/*.svg"
+    "test:cli:clean": "rimraf test/*/*.mmd test/*/*.pdf test/*/*.png test/*/*.svg"
   },
   "keywords": [],
   "author": "",
@@ -34,5 +34,17 @@
     "mocha": "^6.2.0",
     "nyc": "^14.1.1",
     "rimraf": "^3.0.0"
-  }
+  },
+  "directories": {
+    "doc": "docs",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/allnulled/skemator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/allnulled/skemator/issues"
+  },
+  "homepage": "https://github.com/allnulled/skemator#readme"
 }

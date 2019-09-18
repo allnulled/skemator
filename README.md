@@ -4,14 +4,14 @@ To build diagrams via scripting.
 
 ## Index
 
-- 1. [Introduction](#introduction)
+- [Introduction](#introduction)
 - [Installation](#installation)
 - [Get started](#get-started)
-- [Language](#language)
 - [Usage](#usage)
-   - 1. [CLI](#cli)
-   - 2. [API](#api)
-   - 3. [Browser](#api)
+   - [CLI](#cli)
+   - [API](#api)
+   - [Browser](#api)
+- [Language](#language)
 - [Versioning](#versioning)
 - [Issues](#issues)
 - [License](#license)
@@ -56,6 +56,83 @@ Then, from the console, you can type this to generate an image from your `*.skm`
 `$ skemator compile example1.skm --png`
 
 Automatically, a `example1.png` will be generated beside `example1.skm`.
+
+## Usage
+
+Below, the CLI and API usages are explained.
+
+### CLI
+
+Syntax: `skemator {compile|watch} {command arguments}`
+
+#### Compile example
+
+Example: compiles `first.skm second.skm third.skm` and generates the `*.mmd *.png *.svg *.pdf` files.
+
+`$ skemator compile first.skm second.smk third.skm --png --svg --pdf`
+
+#### Watch example
+
+Example: watches `first.skm second.skm third.skm` for changes and generates the `*.mmd *.png *.svg *.pdf` files.
+
+`$ skemator watch first.skm second.smk third.skm --png --svg --pdf`
+
+### API
+
+#### Import module
+
+```js
+import Skemator from 'skemator';
+```
+
+...or...
+
+```js
+const Skemator = require("skemator");
+```
+
+#### Compile example
+
+Example: compiles `first.skm second.skm third.skm` and generates the `*.mmd *.png *.svg *.pdf` files.
+
+```js
+Skemator.execute({
+  command: "compile",
+  files: ["first.skm", "second.smk", "third.skm"]
+  png: true,
+  svg: true,
+  pdf: true
+});
+```
+
+#### Watch example
+
+Example: watches `first.skm second.skm third.skm` for changes and generates the `*.mmd *.png *.svg *.pdf` files.
+
+```js
+Skemator.execute({
+  command: "watch",
+  files: ["first.skm", "second.smk", "third.skm"]
+  png: true,
+  svg: true,
+  pdf: true
+});
+```
+
+### Browser
+
+For browser usage, import normally the package.
+
+#### Compile (from browser) example
+
+In browsers, we only have this method, which in Windows gives problems...
+
+```js
+Skemator.fromSkematorToSvg("#L2R\n[Hello]\n [World]\n  [!]=0\n").then(code => {
+  console.log(code.svg);
+  console.log(code.mmd);
+});
+```
 
 ## Language
 
@@ -127,83 +204,6 @@ Node: `[Some node]--some message-->@someOtherNode`
 - `@someOtherNode` is the node destination of the relation. **Required**. Any type of node is accepted.
 
 *Note: each sentence ends with a new line (`\n`), included the last one.*
-
-## Usage
-
-Below, the CLI and API usages are explained.
-
-### CLI
-
-Syntax: `skemator {compile|watch} {command arguments}`
-
-#### Compile example
-
-Example: compiles `first.skm second.skm third.skm` and generates the `*.mmd *.png *.svg *.pdf` files.
-
-`$ skemator compile first.skm second.smk third.skm --png --svg --pdf`
-
-#### Watch example
-
-Example: watches `first.skm second.skm third.skm` for changes and generates the `*.mmd *.png *.svg *.pdf` files.
-
-`$ skemator watch first.skm second.smk third.skm --png --svg --pdf`
-
-### API
-
-#### Import module
-
-```js
-import Skemator from 'skemator';
-```
-
-...or...
-
-```js
-const Skemator = require("skemator");
-```
-
-#### Compile example
-
-Example: compiles `first.skm second.skm third.skm` and generates the `*.mmd *.png *.svg *.pdf` files.
-
-```js
-Skemator.execute({
-	command: "compile",
-	files: ["first.skm", "second.smk", "third.skm"]
-	png: true,
-	svg: true,
-	pdf: true
-});
-```
-
-#### Watch example
-
-Example: watches `first.skm second.skm third.skm` for changes and generates the `*.mmd *.png *.svg *.pdf` files.
-
-```js
-Skemator.execute({
-	command: "watch",
-	files: ["first.skm", "second.smk", "third.skm"]
-	png: true,
-	svg: true,
-	pdf: true
-});
-```
-
-### Browser
-
-For browser usage, import normally the package.
-
-#### Compile (from browser) example
-
-In browsers, we only have this method, which in Windows gives problems...
-
-```js
-Skemator.fromSkematorToSvg("#L2R\n[Hello]\n [World]\n  [!]=0\n").then(code => {
-  console.log(code.svg);
-  console.log(code.mmd);
-});
-```
 
 ## Versioning
 
