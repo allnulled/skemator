@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "To build diagrams via scripting",
   "main": "src/main.js",
+  "browser": "src/skemator.browser.js",
   "bin": {
     "skemator": "bin/skemator"
   },

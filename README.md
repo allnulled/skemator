@@ -10,7 +10,7 @@ To build diagrams via scripting.
 - [Usage](#usage)
    - [CLI](#cli)
    - [API](#api)
-   - [Browser](#api)
+   - [Browser](#browser)
 - [Language](#language)
 - [Versioning](#versioning)
 - [Issues](#issues)
@@ -124,6 +124,10 @@ Skemator.execute({
 
 ### Browser
 
+Browser is not supported yet.
+
+<!--
+
 For browser usage, import normally the package.
 
 #### Compile (from browser) example
@@ -136,6 +140,7 @@ Skemator.fromSkematorToSvg("#L2R\n[Hello]\n [World]\n  [!]=0\n").then(code => {
   console.log(code.mmd);
 });
 ```
+-->
 
 ## Language
 
