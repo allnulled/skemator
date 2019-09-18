@@ -4,7 +4,11 @@ Changelog for `skemator` project.
 
 ## History
 
-### v.1.0.0 - 18/09/2019
+### v.1.0.1 - 18/09/2019 04:21
+
+[x] Exportable as node module.
+
+### v.1.0.0 - 18/09/2019 ...
 
 [x] First version of `skemator` uploaded.
 [x] CLI support.
