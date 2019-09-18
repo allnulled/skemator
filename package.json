@@ -2,17 +2,17 @@
   "name": "skemator",
   "version": "1.0.0",
   "description": "To build diagrams via scripting",
-  "main": "src/skemator.js",
+  "main": "src/main.js",
   "bin": {
     "skemator": "bin/skemator"
   },
   "scripts": {
     "compile": "node_modules/.bin/pegjs --format commonjs -o src/skemator.parser.js src/skemator.parser.pegjs",
     "compile:browser": "node_modules/.bin/pegjs --format commonjs -o src/skemator.browser.parser.js src/skemator.parser.pegjs && node dev/export.browser.js",
-    "build": "npm run compile && npm run compile:browser && npm run export:browser",
-    "export:browser": "node_modules/.bin/copyfiles src/skemator.browser.js src/skemator.browser.parser.js test/editor/src -u 1",
-    "test": "node bin/skemator test/*.skm",
-    "test:browser": "node_modules/.bin/http-server test/browser -o"
+    "build": "npm run compile && npm run compile:browser",
+    "test": "node_modules/.bin/mocha test/**/*.test.js",
+    "test:cli": "npm run test:cli:clean && node bin/skemator compile \"test/1/*.skm\" \"test/2/*.skm\" \"test/3/*.skm\" --svg --png --pdf",
+    "test:cli:clean": "./node_modules/.bin/rimraf test/*/*.mmd test/*/*.pdf test/*/*.png test/*/*.svg"
   },
   "keywords": [],
   "author": "",
@@ -28,7 +28,11 @@
     "yargs": "^14.0.0"
   },
   "devDependencies": {
+    "chai": "^4.2.0",
     "copyfiles": "^2.1.1",
-    "http-server": "^0.11.1"
+    "http-server": "^0.11.1",
+    "mocha": "^6.2.0",
+    "nyc": "^14.1.1",
+    "rimraf": "^3.0.0"
   }
 }

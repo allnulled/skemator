@@ -1,0 +1,11 @@
+#L2R
+[This]
+ [is]
+  ==>[imagination]=i1
+   [or]=o1
+    [reality]=r1
+  ==>[reality]=r2
+   [or]=o2
+    [imagination]=i2
+@i1 .-> @i2
+@r1 .-> @r2

@@ -1,0 +1,15 @@
+[Inicio]=Inicio
+ [Cabecera del programa]=Cabecera
+  [Ficheros]=Ficheros
+  [Edición]=Edicion
+  [Ayuda]=Ayuda
+ [Cuerpo del programa]=Cuerpo
+  [Árbol de ficheros]
+  [Editor de fichero]
+ [Pie del programa]=Pie
+  [Estado del editor]
+  [Estado del cursor]=EstadoCursor
+@Cabecera -- con un mensaje ==> @Inicio
+@Cabecera -- con un mensaje ==> @Pie
+@Cabecera -- con un mensaje ==> @Cuerpo
+@Cabecera -- con un mensaje ==> @EstadoCursor

@@ -1,0 +1,43 @@
+#!/usr/bin/env node
+
+const commonOptions = yargs => {
+	return yargs
+		.option("pdf", {
+			type: "boolean",
+			demand: false,
+			default: false
+		})
+		.option("png", {
+			type: "boolean",
+			demand: false,
+			default: false
+		})
+		.option("svg", {
+			type: "boolean",
+			demand: false,
+			default: false
+		});
+}
+
+const yargs = require("yargs")
+	.usage("\nUsage:\n  $0 <command> <args> [options]")
+	.command(
+		"compile <files..>",
+		"Compile skemator files",
+		yargs => commonOptions(yargs.default("command", "compile"))
+	)
+	.command(
+		"watch <files..>",
+		"Watch and compile skemator files",
+		yargs => commonOptions(yargs.default("command", "watch"))
+	)
+	.help();
+
+const args = yargs.argv;
+
+if (!args.command) {
+	yargs.showHelp();
+	return console.log("\nError:\n  You need to specify a command");
+}
+
+require(__dirname + "/../src/skemator.js")[args.command](args);
