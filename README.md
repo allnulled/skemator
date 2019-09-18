@@ -221,6 +221,10 @@ This projects adheres to the [semmantic versioning 2.0](https://semver.org/) of 
 
 Please, share the issues you found in the corresponding section of the package. Thank you.
 
+## Changelog
+
+Changes from version to version are available in the `CHANGELOG.md` file in the root.
+
 ## License
 
 This license is tied to the license of [mermaid](#) and other libraries.
