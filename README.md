@@ -40,10 +40,10 @@ To start working with `skemator`, create the following file called `example1.skm
 #L2R
 [This]
  [is]
-  =>[imagination]=i1
+  ==>[imagination]=i1
    [or]=o1
     [reality]=r1
-  =>[reality]=r2
+  ==>[reality]=r2
    [or]=o2
     [imagination]=i2
 @i1 .-> @i2
@@ -51,11 +51,14 @@ To start working with `skemator`, create the following file called `example1.skm
 
 ```
 
+
 Then, from the console, you can type this to generate an image from your `*.skm` file:
 
 `$ skemator compile example1.skm --png`
 
-Automatically, a `example1.png` will be generated beside `example1.skm`.
+Automatically, a `example1.png` will be generated beside `example1.skm`. It should look like:
+
+![A complete diagram](./test/example.png)
 
 ## Usage
 
