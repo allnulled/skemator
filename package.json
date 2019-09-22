@@ -8,6 +8,7 @@
     "skemator": "bin/skemator"
   },
   "scripts": {
+    "build:docs": "node bin/skemator compile ./docs/examples/**/*.skm --png",
     "build:skemator": "pegjs --format commonjs -o src/skemator.parser.js src/skemator.parser.pegjs",
     "build:bookmator": "pegjs --format commonjs -o src/bookmator.parser.js src/bookmator.parser.pegjs",
     "build": "npm run build:skemator && npm run build:bookmator",
