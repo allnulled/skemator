@@ -1,0 +1,26 @@
+graph LR;
+
+Inicio["Inicio"];
+Cabecera["Cabecera del programa"];
+Inicio ==> Cabecera;
+Ficheros["Ficheros"];
+Cabecera --> Ficheros;
+Edicion["Edición"];
+Cabecera --> Edicion;
+Ayuda["Ayuda"];
+Cabecera --> Ayuda;
+Cuerpo["Cuerpo del programa"];
+Inicio --> Cuerpo;
+arbol_de_ficheros["Árbol de ficheros"];
+Cuerpo --> arbol_de_ficheros;
+Editor_de_fichero["Editor de fichero"];
+Cuerpo --> Editor_de_fichero;
+Pie["Pie del programa"];
+Inicio --> Pie;
+Estado_del_editor["Estado del editor"];
+Pie --> Estado_del_editor;
+Estado_del_cursor["Estado del cursor"];
+Pie --> Estado_del_cursor;
+Z["Z"] ==>|con un mensaje|Inicio;
+Y["Y"] ==>|con un mensaje|Pie;
+X["X"] ==>|con un mensaje|Cuerpo;

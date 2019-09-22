@@ -8,12 +8,17 @@
     "skemator": "bin/skemator"
   },
   "scripts": {
-    "compile": "pegjs --format commonjs -o src/skemator.parser.js src/skemator.parser.pegjs",
-    "compile:browser": "pegjs --format commonjs -o src/skemator.browser.parser.js src/skemator.parser.pegjs && node dev/export.browser.js",
-    "build": "npm run compile && npm run compile:browser",
+    "build:skemator": "pegjs --format commonjs -o src/skemator.parser.js src/skemator.parser.pegjs",
+    "build:bookmator": "pegjs --format commonjs -o src/bookmator.parser.js src/bookmator.parser.pegjs",
+    "build": "npm run build:skemator && npm run build:bookmator",
     "test": "mocha test/**/*.test.js",
     "test:cli": "npm run test:cli:clean && node bin/skemator compile \"test/1/*.skm\" \"test/2/*.skm\" \"test/3/*.skm\" --svg --png --pdf",
-    "test:cli:clean": "rimraf test/*/*.mmd test/*/*.pdf test/*/*.png test/*/*.svg"
+    "test:cli:clean": "rimraf test/*/*.mmd test/*/*.pdf test/*/*.png test/*/*.svg",
+    "test:cli:skm": "node bin/skemator compile test/1/1.skm",
+    "test:cli:uml": "node bin/skemator compile:uml test/uml1/ejemplo1.uml",
+    "test:cli:book": "node bin/skemator compile:book test/book1/index.md",
+    "test:cli:book:create": "node bin/skemator create:book test/book2/BookOne --script test/book2/book2.bkm",
+    "test:cli:book:2": "node bin/skemator compile:book test/book2/BookOne/index.md --watch"
   },
   "keywords": [],
   "author": "",
@@ -21,16 +26,19 @@
   "dependencies": {
     "chokidar": "^3.0.2",
     "execute-command-sync": "^1.0.2",
+    "fs-extra": "^8.1.0",
     "glob": "^7.1.4",
     "globby": "^10.0.1",
     "mermaid": "^8.2.6",
     "mermaid.cli": "^0.5.1",
     "pegjs": "^0.10.0",
-    "yargs": "^14.0.0"
+    "yargs": "^14.0.0",
+    "yargs-parser": "^14.0.0"
   },
   "devDependencies": {
     "chai": "^4.2.0",
     "copyfiles": "^2.1.1",
+    "electron": "^6.0.9",
     "http-server": "^0.11.1",
     "mocha": "^6.2.0",
     "nyc": "^14.1.1",

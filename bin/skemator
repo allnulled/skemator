@@ -1,35 +1,87 @@
 #!/usr/bin/env node
 
-const commonOptions = yargs => {
-	return yargs
-		.option("pdf", {
-			type: "boolean",
-			demand: false,
-			default: false
-		})
-		.option("png", {
-			type: "boolean",
-			demand: false,
-			default: false
-		})
-		.option("svg", {
-			type: "boolean",
-			demand: false,
-			default: false
-		});
-}
-
 const yargs = require("yargs")
+	.version(require(__dirname + "/../package.json").version)
 	.usage("\nUsage:\n  $0 <command> <args> [options]")
+	.option("verbose", {
+		type: "boolean",
+		demand: false,
+		default: false,
+	})
 	.command(
 		"compile <files..>",
 		"Compile skemator files",
-		yargs => commonOptions(yargs.default("command", "compile"))
+		yargs => yargs.default("command", "compile")
+			.option("pdf", {
+				type: "boolean",
+				demand: false,
+				default: false
+			})
+			.option("png", {
+				type: "boolean",
+				demand: false,
+				default: false
+			})
+			.option("svg", {
+				type: "boolean",
+				demand: false,
+				default: false
+			})
+			.option("watch", {
+				alias: "w",
+				type: "boolean",
+				demand: false,
+				default: false
+			})
 	)
 	.command(
-		"watch <files..>",
-		"Watch and compile skemator files",
-		yargs => commonOptions(yargs.default("command", "watch"))
+		"compile:uml <files..>",
+		"Compile plantuml files",
+		yargs => yargs.default("command", "compileUML")
+			.option("watch", {
+				alias: "w",
+				type: "boolean",
+				demand: false,
+				default: false
+			})
+	)
+	.command(
+		"compile:book <file>",
+		"Compile markdown files recursively in 1",
+		yargs => yargs.default("command", "compileBook")
+			.option("title", {
+				type: "boolean",
+				demand: false,
+				default: false,
+			})
+			.option("index", {
+				type: "boolean",
+				demand: false,
+				default: false,
+			})
+			.option("watch", {
+				alias: "w",
+				type: "boolean",
+				demand: false,
+				default: false
+			})
+	)
+	.command(
+		"create:book <folder>",
+		"Create a book in a folder (by a script optionally)",
+		yargs => yargs.default("command", "createBook")
+			.option("script", {
+				alias: "s",
+				type: "string",
+				demand: false,
+				default: null
+			})
+			.option("watch", { // Not implemented yet
+				alias: "w",
+				type: "boolean",
+				demand: false,
+				default: false
+			})
 	)
 	.help();
 

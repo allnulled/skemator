@@ -26,7 +26,6 @@ By `skemator`, we can refer to:
   - **Skemator Language**: the programming language implementation of `skemator`.
   - **Skemator CLI**: the command-line interface of `skemator`.
   - **Skemator API**: the abstract programming interface of `skemator`.
-  - **Skemator Online Editor**: a web application to use `skemator`.
 
 ## Installation
 
@@ -66,29 +65,119 @@ Below, the CLI and API usages are explained.
 
 ### CLI
 
-Syntax: `skemator {compile|watch} {command arguments}`
+The `skemator CLI` brings some powerful shortcuts. With it, we can:
+
+- Compile `*.skm` to `*.mmd`, `*.png`, `*.svg`, `*.pdf`
+- Compile `*.plantuml` to `*.png`
+- Compile `index.md` to `book.md`
+- Compile `*.bkm` to a real files and folders
+
+So, this tool can be useful for anyone who works with `skm`, `bkm`, `plantuml` and `md`.
+
+#### Help
+
+The help for all the commands:
+
+```
+Usage:
+  skemator <command> <args> [options]
+
+Commands:
+  skemator compile <files..>      Compile skemator files
+  skemator compile:uml <files..>  Compile plantuml files
+  skemator compile:book <file>    Compile markdown files recursively in 1
+  skemator create:book <folder>   Create a book in a folder (by a script
+                                  optionally)
+
+Options:
+  --version  Show version number                                       [boolean]
+  --verbose                                           [boolean] [default: false]
+  --help     Show help                                                 [boolean]
+```
+
+The help to compile a `*.skm` file to `*.mmd` (and `*.pdf`, `*.png`, `*.svg`):
+
+```
+skemator compile <files..>
+
+Compile skemator files
+
+Options:
+  --version    Show version number                                     [boolean]
+  --verbose                                           [boolean] [default: false]
+  --help       Show help                                               [boolean]
+  --pdf                                               [boolean] [default: false]
+  --png                                               [boolean] [default: false]
+  --svg                                               [boolean] [default: false]
+  --watch, -w                                         [boolean] [default: false]
+  --command                                                 [default: "compile"]
+```
+
+The help to compile a `*.uml` or `*.plantuml` file into `*.png`:
+
+```
+skemator compile:uml <files..>
+
+Compile plantuml files
+
+Options:
+  --version    Show version number                                     [boolean]
+  --verbose                                           [boolean] [default: false]
+  --help       Show help                                               [boolean]
+  --watch, -w                                         [boolean] [default: false]
+  --command                                              [default: "compileUML"]
+```
+
+The help to compile a book (into a `book.md` file from an `index.md` file):
+
+```
+skemator compile:book <file>
+
+Compile markdown files recursively in 1
+
+Options:
+  --version    Show version number                                     [boolean]
+  --verbose                                           [boolean] [default: false]
+  --help       Show help                                               [boolean]
+  --title                                             [boolean] [default: false]
+  --index                                             [boolean] [default: false]
+  --watch, -w                                         [boolean] [default: false]
+  --command                                             [default: "compileBook"]
+```
+
+The help to create a book (optionally using a `*.bkm` script):
+
+```
+skemator create:book <folder>
+
+Create a book in a folder (by a script optionally)
+
+Options:
+  --version     Show version number                                    [boolean]
+  --verbose                                           [boolean] [default: false]
+  --help        Show help                                              [boolean]
+  --script, -s                                          [string] [default: null]
+  --watch, -w                                         [boolean] [default: false]
+  --command                                              [default: "createBook"]
+```
 
 #### Compile example
 
-Example: compiles `first.skm second.skm third.skm` and generates the `*.mmd *.png *.svg *.pdf` files.
+Example: it compiles `first.skm second.skm third.skm` and generates the `*.mmd *.png *.svg *.pdf` files.
 
 `$ skemator compile first.skm second.smk third.skm --png --svg --pdf`
 
 #### Watch example
 
-Example: watches `first.skm second.skm third.skm` for changes and generates the `*.mmd *.png *.svg *.pdf` files.
+Example: it watches `first.skm second.skm third.skm` for changes and generates the `*.mmd *.png *.svg *.pdf` files.
 
-`$ skemator watch first.skm second.smk third.skm --png --svg --pdf`
+`$ skemator compile first.skm second.smk third.skm --png --svg --pdf --watch`
 
 ### API
 
+The API shares all the options accepted by the CLI, but passed in a JavaScript object to the `Skemator.execute` static method as unique parameter. The `command` property is reserved by this software, and it indicates which method needs to be statically invoked by the `Skemator` class, and this way we can dispatch all the commands from the same method.3
+
 #### Import module
-
-```js
-import Skemator from 'skemator';
-```
-
-...or...
 
 ```js
 const Skemator = require("skemator");

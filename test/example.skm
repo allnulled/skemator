@@ -7,5 +7,5 @@
   ==>[reality]=r2
    [or]=o2
     [imagination]=i2
-@i1 .-> @i2
+@i1 ==> @i2
 @r1 .-> @r2

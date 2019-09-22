@@ -1,0 +1,14 @@
+  @startuml
+ 
+    actor Juan
+    database baseDeDatos #green
+ 
+    Juan -> baseDeDatos: saludas
+    note right: cortesía
+    Juan <-- baseDeDatos: responde
+ 
+    Juan -> Paco: saluda
+    Paco -> Paco: ¿cómo se \nllamaba \neste tío?
+    Juan <-- Paco: responde
+ 
+  @enduml

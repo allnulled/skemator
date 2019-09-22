@@ -1,5 +1,6 @@
 {
   const sentences = [];
+  const generateID = () => '_' + Math.random().toString(36).substr(2, 9);
   const scriptOptions = {
     "graph.direction": "BT"
   };
@@ -33,6 +34,9 @@
     }
     let out = "";
     if(!node.volcadoNodo) {
+      if(node.unico) {
+        node.volcadoNodo = generateID();
+      } else {
       node.volcadoNodo = node.nombreNodo
         .replace(/ /g, "_")
         .replace(/[àáÀÁ]/g, "a")
@@ -43,9 +47,9 @@
         .replace(/[ç]/g, "c")
         .replace(/[ñ]/g, "nh")
         .replace(/[^A-Za-z0-9\$\_]/g, "");
-      node.volcadoNodo = node.volcadoNodo.substr(0,1).toUpperCase() + node.volcadoNodo.substr(1);
+      }
     }
-    out += node.volcadoNodo + "[" + node.nombreNodo + "]";
+    out += node.volcadoNodo + "[" + JSON.stringify(node.nombreNodo) + "]";
     if(node.padre || (node.padre === 0)) {
       out += ";\n" + sentences[node.padre].volcadoNodo + " " + ((node.alineadoNodo && node.alineadoNodo.tipoRelacion) ? node.alineadoNodo.tipoRelacion : "-->") + " " + node.volcadoNodo;
     }
@@ -86,7 +90,8 @@ Bloque = Sentencia_completa*
 Sentencia_completa = s:Sentencia Fin_de_sentencia {return {...s, ...(s.tipoSentencia==="relacion" ? {} : {padre:findParentAndAdd(s)})}}
 Sentencia = Sentencia_relacion / Sentencia_nodo
 Sentencia_nodo = t:Tabulacion n:Sentencia_nodo_contenido {return {tipoSentencia:"nodo",...n,...t}}
-Sentencia_nodo_contenido = a:Alineado_de_nodo? n:Nodos_por_tipo {return {...n, ...{alineadoNodo:a?a:null}}}
+Sentencia_nodo_contenido = a:Alineado_de_nodo? u:Unicidad_de_nodo? n:Nodos_por_tipo {return {...n, ...{alineadoNodo:a?a:null},...{unico:u?true:false}}}
+Unicidad_de_nodo = "*"
 Nodos_por_tipo = Nodo_tipo_1 / Nodo_tipo_2 / Nodo_tipo_3 / Nodo_tipo_4 / Nodo_tipo_5 / Nodo_tipo_6
 Nodo_tipo_1 = "<" _* n:(!(_* ">").)+ _* ">" v:Volcado_de_nodo? {return {tipoNodo:"<>",nombreNodo:n.map(ni => ni[1]).join(""), ...(v?v:{volcadoNodo:null})}}
 Nodo_tipo_2 = "[" _* n:(!(_* "]").)+ _* "]" v:Volcado_de_nodo? {return {tipoNodo:"[]",nombreNodo:n.map(ni => ni[1]).join(""), ...(v?v:{volcadoNodo:null})}}

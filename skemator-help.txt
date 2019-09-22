@@ -1,0 +1,61 @@
+
+Usage:
+  skemator <command> <args> [options]
+
+Commands:
+  skemator compile <files..>      Compile skemator files
+  skemator compile:uml <files..>  Compile plantuml files
+  skemator compile:book <file>    Compile markdown files recursively in 1
+  skemator create:book <folder>   Create a book in a folder (by a script
+                                  optionally)
+
+Options:
+  --version  Show version number                                       [boolean]
+  --verbose                                           [boolean] [default: false]
+  --help     Show help                                                 [boolean]
+skemator compile <files..>
+
+Compile skemator files
+
+Options:
+  --version    Show version number                                     [boolean]
+  --verbose                                           [boolean] [default: false]
+  --help       Show help                                               [boolean]
+  --pdf                                               [boolean] [default: false]
+  --png                                               [boolean] [default: false]
+  --svg                                               [boolean] [default: false]
+  --watch, -w                                         [boolean] [default: false]
+  --command                                                 [default: "compile"]
+skemator compile:uml <files..>
+
+Compile plantuml files
+
+Options:
+  --version    Show version number                                     [boolean]
+  --verbose                                           [boolean] [default: false]
+  --help       Show help                                               [boolean]
+  --watch, -w                                         [boolean] [default: false]
+  --command                                              [default: "compileUML"]
+skemator compile:book <file>
+
+Compile markdown files recursively in 1
+
+Options:
+  --version    Show version number                                     [boolean]
+  --verbose                                           [boolean] [default: false]
+  --help       Show help                                               [boolean]
+  --title                                             [boolean] [default: false]
+  --index                                             [boolean] [default: false]
+  --watch, -w                                         [boolean] [default: false]
+  --command                                             [default: "compileBook"]
+skemator create:book <folder>
+
+Create a book in a folder (by a script optionally)
+
+Options:
+  --version     Show version number                                    [boolean]
+  --verbose                                           [boolean] [default: false]
+  --help        Show help                                              [boolean]
+  --script, -s                                          [string] [default: null]
+  --watch, -w                                         [boolean] [default: false]
+  --command                                              [default: "createBook"]
