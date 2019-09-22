@@ -8,7 +8,7 @@ Alternatively, you can check those same `skemator cli` examples using the `skema
 
 #### A complete example
 
-[!A complete example as image](docs/examples/all.png)
+![A complete example as image](docs/examples/all.png)
 
 ```
 #R2L
