@@ -143,7 +143,7 @@ function peg$parse(input, options) {
 
       peg$c0 = function(b) {return {nodes: b}},
       peg$c1 = function(s) {return [].concat(s?s[0]:[]).concat(s && s[1] ? s[1].map(i => i[1]) : [])},
-      peg$c2 = function(t, f, c) {return addFilepath({file:f+"/index.md",folder:f,contents:c?c:"",tabulation:t})},
+      peg$c2 = function(t, f, c) {return addFilepath({file:getFile(f),folder:getFolder(f),extension:getExtension(f),contents:c?c:"",tabulation:t})},
       peg$c3 = " ",
       peg$c4 = peg$literalExpectation(" ", false),
       peg$c5 = function() {return text().length},
@@ -844,6 +844,17 @@ function peg$parse(input, options) {
         node.folder = node.folder.replace(/^\//g, "");
       }
       return addNode(node);
+    };
+    const regexForExtensions = /\[(\.[^\]]+)\]$/;
+    const getFile = file => {
+      return file.match(regexForExtensions) ? (file.replace(regexForExtensions, "") + file.match(regexForExtensions)[1]) : (file + "/index.md");
+    };
+    const getFolder = folder => {
+      return folder.match(regexForExtensions) ? (folder.replace(regexForExtensions, "").replace(/\/[^\/]+$/g, "")) : folder;
+    };
+    const getExtension = file => {
+      const results = file.match(regexForExtensions);
+      return results ? results[1] : null;
     };
 
 

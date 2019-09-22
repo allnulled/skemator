@@ -23,11 +23,22 @@
     }
     return addNode(node);
   };
+  const regexForExtensions = /\[(\.[^\]]+)\]$/;
+  const getFile = file => {
+    return file.match(regexForExtensions) ? (file.replace(regexForExtensions, "") + file.match(regexForExtensions)[1]) : (file + "/index.md");
+  };
+  const getFolder = folder => {
+    return folder.match(regexForExtensions) ? (folder.replace(regexForExtensions, "").replace(/\/[^\/]+$/g, "")) : folder;
+  };
+  const getExtension = file => {
+    const results = file.match(regexForExtensions);
+    return results ? results[1] : null;
+  };
 }
 Language = b:Block _* {return {nodes: b}}
 Block = s:( S ( End_S S )* )? {return [].concat(s?s[0]:[]).concat(s && s[1] ? s[1].map(i => i[1]) : [])}
 S = S_File
-S_File = t:Tabulation f:Filename c:Contents? {return addFilepath({file:f+"/index.md",folder:f,contents:c?c:"",tabulation:t})}
+S_File = t:Tabulation f:Filename c:Contents? {return addFilepath({file:getFile(f),folder:getFolder(f),extension:getExtension(f),contents:c?c:"",tabulation:t})}
 Tabulation = " "* {return text().length}
 End_S = "\r\n" / "\n"
 Filename = "/" (!(End_S).)+ {return text()}

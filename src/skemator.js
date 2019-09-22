@@ -47,10 +47,14 @@ class Skemator {
 		delete opts2.watch;
 		chokidar.watch(files).on("change", (file, fstat) => {
 			this.log(opts, "[skemator] a file changed, skemator working... " + file);
-			this[command]({ 
-				...opts2,
-				files: [file]
-			});
+			try {
+				this[command]({ 
+					...opts2,
+					files: [file]
+				});
+			} catch(error) {
+				console.log(opts, error);
+			}
 		});
 	}
 	static compile(optParams) {
@@ -207,13 +211,13 @@ class Skemator {
 					fs.readdirSync(directory).forEach(nodename => {
 						if(nodename === "index.md") return;
 						const node = path.resolve(directory, nodename);
-						const isFile = fs.lstatSync(node).isFile();
+						const isFile = fs.existsSync(node) && fs.lstatSync(node).isFile();
 						const title = this.toIndexTitle(node);
 						if(isFile && path.extname(node) === "md") {
 							titles.push(title);
 						} else if(!isFile) {
 							const innerIndex = path.resolve(node, "index.md");
-							const isFileInnerIndex = fs.lstatSync(innerIndex).isFile();
+							const isFileInnerIndex = fs.existsSync(innerIndex) && fs.lstatSync(innerIndex).isFile();
 							if(innerIndex && isFileInnerIndex) {
 								titles.push(title);
 							}
@@ -230,7 +234,7 @@ class Skemator {
 							return;
 						}
 						const otherFilePath = path.resolve(directory, otherFile);
-						const isDirectory = fs.lstatSync(otherFilePath).isDirectory();
+						const isDirectory = fs.existsSync(otherFilePath) && fs.lstatSync(otherFilePath).isDirectory();
 						if(!isDirectory && isMarkdown) {
 							out += "\n\n" + processFile(otherFilePath);
 						} else if(hasIndex(otherFilePath)) {

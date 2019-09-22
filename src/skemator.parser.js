@@ -219,10 +219,8 @@ function peg$parse(input, options) {
       peg$c75 = peg$classExpectation(["\r", "\t", " "], false, false),
       peg$c76 = /^[\n\r\t ]/,
       peg$c77 = peg$classExpectation(["\n", "\r", "\t", " "], false, false),
-      peg$c78 = /^[\n]/,
-      peg$c79 = peg$classExpectation(["\n"], false, false),
-      peg$c80 = "\r\n",
-      peg$c81 = peg$literalExpectation("\r\n", false),
+      peg$c78 = "\r\n",
+      peg$c79 = peg$literalExpectation("\r\n", false),
 
       peg$currPos          = 0,
       peg$savedPos         = 0,
@@ -2517,20 +2515,20 @@ function peg$parse(input, options) {
   function peg$parseFin_de_sentencia() {
     var s0;
 
-    if (peg$c78.test(input.charAt(peg$currPos))) {
-      s0 = input.charAt(peg$currPos);
+    if (input.charCodeAt(peg$currPos) === 10) {
+      s0 = peg$c67;
       peg$currPos++;
     } else {
       s0 = peg$FAILED;
-      if (peg$silentFails === 0) { peg$fail(peg$c79); }
+      if (peg$silentFails === 0) { peg$fail(peg$c68); }
     }
     if (s0 === peg$FAILED) {
-      if (input.substr(peg$currPos, 2) === peg$c80) {
-        s0 = peg$c80;
+      if (input.substr(peg$currPos, 2) === peg$c78) {
+        s0 = peg$c78;
         peg$currPos += 2;
       } else {
         s0 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c81); }
+        if (peg$silentFails === 0) { peg$fail(peg$c79); }
       }
     }
 
