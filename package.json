@@ -1,6 +1,6 @@
 {
   "name": "skemator",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "To build diagrams via scripting",
   "main": "src/skemator.js",
   "browser": "src/skemator.browser.js",
@@ -21,7 +21,11 @@
     "test:cli:book:create": "node bin/skemator create:book test/book2/BookOne --script test/book2/book2.bkm",
     "test:cli:book:2": "node bin/skemator compile:book test/book2/BookOne/index.md --watch"
   },
-  "keywords": ["diagram","documentation","uml"],
+  "keywords": [
+    "diagram",
+    "documentation",
+    "uml"
+  ],
   "author": "allnulled",
   "license": "WTFPL",
   "dependencies": {
