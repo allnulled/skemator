@@ -50,6 +50,8 @@ To start working with `skemator`, create the following file called `example1.skm
 
 ```
 
+(Use double quotes to wrap special characters, like `.`, `-`, or others that can arise errors.)
+
 
 Then, from the console, you can type this to generate an image from your `*.skm` file:
 
