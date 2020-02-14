@@ -21,9 +21,9 @@
     "test:cli:book:create": "node bin/skemator create:book test/book2/BookOne --script test/book2/book2.bkm",
     "test:cli:book:2": "node bin/skemator compile:book test/book2/BookOne/index.md --watch"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["diagram","documentation","uml"],
+  "author": "allnulled",
+  "license": "WTFPL",
   "dependencies": {
     "chokidar": "^3.0.2",
     "execute-command-sync": "^1.0.2",
