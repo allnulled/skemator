@@ -30,12 +30,14 @@
   "license": "WTFPL",
   "dependencies": {
     "chokidar": "^3.0.2",
+    "electron": "^8.2.1",
     "execute-command-sync": "^1.0.2",
     "fs-extra": "^8.1.0",
     "glob": "^7.1.4",
     "globby": "^10.0.1",
-    "mermaid": "^8.2.6",
+    "mermaid": "^8.5.0",
     "mermaid.cli": "^0.5.1",
+    "node-plantuml": "^0.9.0",
     "pegjs": "^0.10.0",
     "yargs": "^14.0.0",
     "yargs-parser": "^14.0.0"
@@ -43,7 +45,6 @@
   "devDependencies": {
     "chai": "^4.2.0",
     "copyfiles": "^2.1.1",
-    "electron": "^6.0.9",
     "http-server": "^0.11.1",
     "mocha": "^6.2.0",
     "nyc": "^14.1.1",
