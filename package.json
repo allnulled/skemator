@@ -1,6 +1,6 @@
 {
   "name": "skemator",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "To build diagrams via scripting",
   "main": "src/skemator.js",
   "browser": "src/skemator.browser.js",
