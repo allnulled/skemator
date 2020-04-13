@@ -16,6 +16,7 @@ class Samples {
 			skemator2: path.resolve(this.ROOT_TEST, "2/2.skm"),
 			skemator3: path.resolve(this.ROOT_TEST, "3/3.skm"),
 			skemator4: path.resolve(this.ROOT_TEST, "4/4.skm"),
+			skemator5: path.resolve(this.ROOT_TEST, "5/5.skm"),
 			skematorSection1: path.resolve(this.ROOT_TEST, "section1"),
 			skematorBook1: path.resolve(this.ROOT_TEST, "book1/index.md"),
 			skematorBook2: path.resolve(this.ROOT_TEST, "book2/index.md"),
@@ -47,10 +48,42 @@ class Samples {
 describe("Skemator class", function() {
 	this.timeout(10*1000);
 	before(Samples.clearAll);
-	it("can compile *.skm files as png image", function(pass) {
+	it("can compile *.skm files as png image (1/5)", function(pass) {
 		const diagram = Samples.FILES.skemator1.replace(/\.skm$/g,".mmd");
 		expect(fs.existsSync(diagram)).to.equal(false);
 		Skemator.compile({files:[Samples.FILES.skemator1]}).then(files => {
+			expect(fs.existsSync(diagram)).to.equal(true);
+			return pass();
+		}).catch(error => {throw error});
+	});
+	it("can compile *.skm files as png image (2/5)", function(pass) {
+		const diagram = Samples.FILES.skemator2.replace(/\.skm$/g,".mmd");
+		expect(fs.existsSync(diagram)).to.equal(false);
+		Skemator.compile({files:[Samples.FILES.skemator2]}).then(files => {
+			expect(fs.existsSync(diagram)).to.equal(true);
+			return pass();
+		}).catch(error => {throw error});
+	});
+	it("can compile *.skm files as png image (3/5)", function(pass) {
+		const diagram = Samples.FILES.skemator3.replace(/\.skm$/g,".mmd");
+		expect(fs.existsSync(diagram)).to.equal(false);
+		Skemator.compile({files:[Samples.FILES.skemator3]}).then(files => {
+			expect(fs.existsSync(diagram)).to.equal(true);
+			return pass();
+		}).catch(error => {throw error});
+	});
+	it("can compile *.skm files as png image (4/5)", function(pass) {
+		const diagram = Samples.FILES.skemator4.replace(/\.skm$/g,".mmd");
+		expect(fs.existsSync(diagram)).to.equal(false);
+		Skemator.compile({files:[Samples.FILES.skemator4]}).then(files => {
+			expect(fs.existsSync(diagram)).to.equal(true);
+			return pass();
+		}).catch(error => {throw error});
+	});
+	it("can compile *.skm files as png image (5/5)", function(pass) {
+		const diagram = Samples.FILES.skemator5.replace(/\.skm$/g,".mmd");
+		expect(fs.existsSync(diagram)).to.equal(false);
+		Skemator.compile({files:[Samples.FILES.skemator5]}).then(files => {
 			expect(fs.existsSync(diagram)).to.equal(true);
 			return pass();
 		}).catch(error => {throw error});

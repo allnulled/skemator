@@ -1,0 +1,27 @@
+graph BT;
+
+Inicio["Inicio"];
+Cabecera["Cabecera del programa"];
+Inicio --> Cabecera;
+Ficheros["Ficheros"];
+Cabecera --> Ficheros;
+Edicion["Edición"];
+Cabecera --> Edicion;
+Ayuda["Ayuda"];
+Cabecera --> Ayuda;
+Cuerpo["Cuerpo del programa"];
+Inicio --> Cuerpo;
+arbol_de_ficheros["Árbol de ficheros"];
+Cuerpo --> arbol_de_ficheros;
+Editor_de_fichero["Editor de fichero"];
+Cuerpo --> Editor_de_fichero;
+Pie["Pie del programa"];
+Inicio --> Pie;
+Estado_del_editor["Estado del editor"];
+Pie --> Estado_del_editor;
+EstadoCursor["Estado del cursor"];
+Pie --> EstadoCursor;
+Cabecera ==>|con un mensaje|Inicio;
+Cabecera ==>|con un mensaje|Pie;
+Cabecera ==>|con un mensaje|Cuerpo;
+Cabecera ==>|con un mensaje|EstadoCursor;

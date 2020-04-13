@@ -1,0 +1,13 @@
+graph LR;
+
+0["START"];
+S1["1. Compruebo si es un index.md"];
+0 --> S1;
+E1["1. Lanzo error y salgo"];
+S1 .-> E1;
+S2["2. Lo concateno en resultado"];
+S3["3. Cojo todos los *.md del mismo directorio por orden alfabético en resultado"];
+S4["4. Los concateno en resultado"];
+S1 -->S2;
+S2 -->S3;
+S3 -->S4;

@@ -118,4 +118,5 @@ Sentencia_relacion = n:Nodos_por_tipo _* a:Alineado_de_nodo _* n2:Nodos_por_tipo
 Tabulacion = " "* {return {tabulacion:text().length}}
 _ = [\r\t ]
 __ = [\n\r\t ]
-Fin_de_sentencia = "\n" / "\r\n"
+Fin_de_sentencia = "\n" / "\r\n" / Fin_de_fichero
+Fin_de_fichero = !.

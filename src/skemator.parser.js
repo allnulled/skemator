@@ -2530,6 +2530,32 @@ function peg$parse(input, options) {
         s0 = peg$FAILED;
         if (peg$silentFails === 0) { peg$fail(peg$c79); }
       }
+      if (s0 === peg$FAILED) {
+        s0 = peg$parseFin_de_fichero();
+      }
+    }
+
+    return s0;
+  }
+
+  function peg$parseFin_de_fichero() {
+    var s0, s1;
+
+    s0 = peg$currPos;
+    peg$silentFails++;
+    if (input.length > peg$currPos) {
+      s1 = input.charAt(peg$currPos);
+      peg$currPos++;
+    } else {
+      s1 = peg$FAILED;
+      if (peg$silentFails === 0) { peg$fail(peg$c23); }
+    }
+    peg$silentFails--;
+    if (s1 === peg$FAILED) {
+      s0 = void 0;
+    } else {
+      peg$currPos = s0;
+      s0 = peg$FAILED;
     }
 
     return s0;

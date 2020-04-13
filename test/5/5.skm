@@ -1,0 +1,10 @@
+#L2R
+[START]=0
+ [1. Compruebo si es un index.md]=S1
+  --si NO.->[1. Lanzo error y salgo]=E1
+[2. Lo concateno en resultado]=S2
+[3. Cojo todos los *.md del mismo directorio por orden alfabético en resultado]=S3
+[4. Los concateno en resultado]=S4
+@S1-->@S2
+@S2-->@S3
+@S3-->@S4
