@@ -30,7 +30,7 @@
   "license": "WTFPL",
   "dependencies": {
     "chokidar": "^3.0.2",
-    "electron": "^8.2.1",
+    "electron": "^9.4.0",
     "execute-command-sync": "^1.0.2",
     "fs-extra": "^8.1.0",
     "glob": "^7.1.4",
